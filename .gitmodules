@@ -1,0 +1,3 @@
+[submodule "aerospace-vehicle-control-and-perception-systems"]
+	path = aerospace-vehicle-control-and-perception-systems
+	url = git@github.com:drjdlarson/aerospace-vehicle-control-and-perception-systems.git
