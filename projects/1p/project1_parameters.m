@@ -45,6 +45,7 @@ wing.span = 20;
 wing.tip_chord = 1;
 wing.root_chord = 3;
 wing.mean_chord = 2;
+wing.taper_ratio = wing.tip_chord/wing.root_chord
 wing.x = full.gravity_center - full.aero_center;
 wing.coef_lift_slope = 4.95;
 wing.eff = 0.8;
@@ -76,3 +77,4 @@ vtail.rudder_tau = interp1(0:0.05:0.7, [0, 0.16, 0.26, 0.34, 0.41, ...
     0.47, 0.52, 0.56, 0.60, 0.64, 0.68, 0.72, 0.75, 0.78, 0.8], ...
     vtail.rudder_area/vtail.area);
 
+save('p1params.mat')
