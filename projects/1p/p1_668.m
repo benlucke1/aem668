@@ -184,7 +184,6 @@ legend('Uncompensated Plant','Plant with Proportional and Integral Boost'...
     ,'Requirements','Interpreter','Latex','FontSize',14)
 
 
-
 %%% Rolloff Stage/Butteworth Filter
 wlp = bw*2; % Found by experimenting
 rolloff_stage = 1/(1/wlp*s + 1);
@@ -195,18 +194,44 @@ bodemag(ol, 'b', L3,'b--', r2,'g', r3,'g', r4,'g', r1,'rx')
 title('Bode Magnitude of Plant & Requirements')
 legend('Uncompensated Plant','Plant with Proportional, Integral Boost and Rolloff'...
     ,'Requirements','Interpreter','Latex','FontSize',14)
+closed_loop = feedback(controller_3, 1);
 
 
 %%% Print stuff for JDL 
 fprintf('The heading hold open loop TF is\n')
 L3
 
-closed_loop = feedback(controller_3, 1);
 fprintf(['The poles of the heading hold outer loop are s = %.3f and \n ' ...
     's = %.3f.\n\n'],pole(closed_loop))
 
 [Gm,Pm,Wcg,Wcp] = margin(L3);
 fprintf(['The gain margin is infinite. The phase margin is ' ...
     '%.2f degrees\nat a crossover frequency of %.2f rad/sec.\n\n'],Pm,Wcp)
+
+%%% Prove 5% steady state error requirement met
+t = linspace(0,400,1000);
+input_frequency = 0.05; % rad/sec
+u = sin(input_frequency * t);
+y_out = lsim(closed_loop, u, t);
+e = zeros(1,numel(t));
+for i = 1:numel(t)
+    e(i) = y_out(i) - u(i);
+end
+figure()
+hold on
+plot(t,e)
+plot(t, .05*ones(length(t)),'r--', t, -.05*ones(length(t)),'r--')
+xlabel('Time (sec)')
+ylabel('Error')
+title('Outer Loop Tracking Error for u = $sin(.05 t)$','Interpreter',...
+    'latex','FontSize',14)
+ylim([-.1 .1])
+legend('Tracking Error', '5\% Bound','Interpreter','Latex',...
+    'Fontsize', 14)
+
+
+%%% Prove < 5% gain for frequencies above 10 rad/sec
+fprintf(['The magnitude of the open loop response at 10 radians per' ...
+    ' second is %.2f dB.\n\n'], 20*log10(abs(freqresp(L3, 10))))
 
 %% Part d - Lateral-directional Inner Loop Controller
