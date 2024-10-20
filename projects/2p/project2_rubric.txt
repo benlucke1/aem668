@@ -1,0 +1,20 @@
+Part a) Build Simulink subsystem for equations of motion
+	mass equation: 1/1 points
+	groundspeed equation: 1/1 point
+	flight-path equation: 1/1 point
+	heading equation: 1/1 point
+	position and wind speed: 1/1 point
+
+Part b) Build simulink subsystem for guidance system:
+	thrust computation: 1/1 point
+	lift computation: 1/1 point
+	heading computation: 1/1 point
+
+Part c) Run Simulink subsystems in part a) and b) and output plots of commmands and states: 2/2 points
+
+Part d) Build another Simulink subsystem for equations of motion:
+	Including all terms in force equation: 1/1 point
+	Including gravity as function of altitude: 1/1 point
+	Including air density as function of altitude: 1/1 point
+
+Part e) Run Simulink subsystems and compare to simulation output plots in part c): 2/2 points
