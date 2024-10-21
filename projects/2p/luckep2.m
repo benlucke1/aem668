@@ -19,6 +19,7 @@ params.AR = 10.1; % dimensionless
 params.umax = 30; % deg
 params.a0 = -.05; % deg
 params.oswald = 0.613;
+params.RE = 6371000 * 3.28084; % ft 
 
 FPS2MPH = 3600/5280;
 DEG2RAD = pi/180;
@@ -35,3 +36,8 @@ ic.g0 = 32.17; % ft/s^2
 ic.rho = 2.3769e-3;
 ic.mg0 = 200e3;
 
+gd.Ktp = .08;
+gd.Kti = .002;
+gd.Klp = 0.5;
+gd.Kli = .01;
+gd.Kup = 0.075;
