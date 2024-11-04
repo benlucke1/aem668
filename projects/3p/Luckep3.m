@@ -25,13 +25,14 @@ B_ac = [derivs.xde, derivs.xdf;
         0 0;
         derivs.xide derivs.xidf];
 
-C_ac = eye(6);
-D_ac = 0;
+C_ac = [0 conds.ubar -ac.xcp -conds.ubar 0 ac.vz]*A_ac;
+D_ac = [0 conds.ubar -ac.xcp -conds.ubar 0 ac.vz]*B_ac;
 
-sys = ss(A_ac, B_ac, C_ac, 0);
+sys = ss(A_ac, B_ac, C_ac, D_ac)
 sys.inputName = {'\delta_e', '\delta_f'};
-sys.outputName = {'udot','alfadot','qdot','thetadot','etadot','etaddot'};
-[wn, zeta, p] = damp(sys);
+sys.outputName = {'\delta a_z_{cp}'}
+
+[wn, zeta, p] = damp(sys)
 tc = abs(ones(1,length(p))'./real(p))
 for i = 1:3
     if i == 1
