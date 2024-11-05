@@ -1,6 +1,6 @@
 clear, clc, close all
 
-%% Define aircraft properties and flight conditions
+% Define aircraft properties
 ac.lf = 143; % ft, length of vehicle
 ac.lcg = 88.42; % ft, cg location from nose
 ac.sw = 1950; % ft^2, wing are
@@ -17,7 +17,7 @@ ac.omega3 = 12.6; % rad/sec, mode 3 frequency
 ac.vzp = -.0027; % rad, mod 3 shape
 ac.zeta = 0.01;
 
-
+% Define flight conditions
 conds.hbar = 5000; % ft, altitude of aircraft
 conds.ubar = 659; % ft/s, airspeed (true?)
 conds.clbar = 0.340; % lift coefficient
@@ -27,8 +27,9 @@ conds.cdbar = 0.0285; % drag coefficient
 Re = 6.3710088e6;
 g0 = 9.80665; 
 conds.g = g0*(Re/(Re + conds.hbar));
-%% Define Stabiltiy and Control Derivatives
-% X Stability and Control Derivatives
+conds.zeta = 0.01;
+
+% Define X Stability and Control Derivatives
 derivs.xu = -0.013;
 derivs.xa = 19.45;
 derivs.xadot = 0;
@@ -38,7 +39,7 @@ derivs.xdf = 0.742;
 derivs.xh = 0;
 derivs.xhdot = 0;
 
-% Z Stability and Control Derivatives
+% Define Z Stability and Control Derivatives
 derivs.zu = -0.1001;
 derivs.za = -283.3;
 derivs.zadot = 0;
@@ -48,7 +49,7 @@ derivs.zdf = 2.11;
 derivs.zh = -2.812;
 derivs.zhdot = -0.0968;
 
-% M Stability and Control Derivatives
+% Define M Stability and Control Derivatives
 derivs.Mu = 0.003;
 derivs.Ma = -3.445;
 derivs.Madot = -0.1035;
@@ -58,7 +59,7 @@ derivs.Mdf = 3.376;
 derivs.Mh = -0.0663;
 derivs.Mhdot = -0.00372;
 
-% Xi Stability and Control Derivatives
+% Define Xi Stability and Control Derivatives
 derivs.xiu = 0;
 derivs.xia = -1075;
 derivs.xiadot = 0;
@@ -68,4 +69,6 @@ derivs.xidf = 89.53;
 derivs.xih = 4.219;
 derivs.xihdot = -0.3502;
 
-conds.zeta = 0.01;
+% Define transfer function variable and clear extraneous constants
+s = tf('s');
+clear Re g0
