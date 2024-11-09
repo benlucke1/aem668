@@ -1,0 +1,16 @@
+Part a) Linearization function: 3/3 points
+
+Part b) SISO LTI controller design: 3/3 points
+
+Part c) Nonlinear simulation: 0.5/0.5 points
+	Linear step simulation: 0.5/0.5 points
+	Output step response for agreement: 0.5/0.5 points
+	Output increasing step responses: 0.5/0.5 points
+
+Part d) Create weights and acutator: 1/1 point
+	Uncertain plant and elements: 1/1 point
+	Connect function: 1/1 point
+
+Part e) Uncertain Feedback control system: 1/1 point
+	Stability margin and worst-case gain: 2/2 point
+	Bode plot of samples: 1/1 point
